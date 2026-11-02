@@ -1,0 +1,13 @@
+Нужно вставить перед setupToolBar() функцию:
+
+// Helper to load icon
+static QString getIconPath(const char *name) {
+#ifdef PREFIX
+	QString path = QString(PREFIX) + "/share/qt2-kde-mini/icons/" + name;
+	QFile f(path);
+	if (f.exists()) return path;
+#endif
+	return QString("../qt2-kde-mini/icons/") + name;
+}
+
+И удалить из setupToolBar() строки 236-244 (внутреннюю функцию iconPath)
